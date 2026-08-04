@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+
+{% block title %}Vizari - Restaurante Italiano{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-overlay">
+        <h1>Vizari</h1>
+        <p class="hero-subtitulo">Sabores autênticos da Itália, direto pra sua mesa</p>
+        <div class="hero-botoes">
+            <a href="{% url 'cardapio' %}" class="btn-principal">Ver Cardápio</a>
+            <a href="#sobre" class="btn-secundario">Conheça o Vizari</a>
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="sobre">
+    <div class="sobre-container">
+        <h2>Nossa História</h2>
+        <p>
+            Há mais de 20 anos servindo receitas tradicionais italianas, o Vizari
+            traz o sabor da Itália pro seu dia a dia — massas frescas, molhos
+            preparados na casa e ingredientes selecionados com carinho.
+        </p>
+    </div>
+</section>
+
+<!-- DESTAQUES -->
+<section class="destaques">
+    <h2>Nossos Destaques</h2>
+    <div class="grid-destaques">
+        <div class="card-destaque">
+            <div class="icone">🍝</div>
+            <h3>Massas Artesanais</h3>
+            <p>Feitas frescas todos os dias, do jeito tradicional italiano.</p>
+        </div>
+        <div class="card-destaque">
+            <div class="icone">🍕</div>
+            <h3>Pizzas no Forno a Lenha</h3>
+            <p>Massa fina, ingredientes selecionados, sabor autêntico.</p>
+        </div>
+        <div class="card-destaque">
+            <div class="icone">🍷</div>
+            <h3>Carta de Vinhos</h3>
+            <p>Rótulos italianos selecionados pra harmonizar com cada prato.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+    <h2>Pronto pra experimentar?</h2>
+    <a href="{% url 'cardapio' %}" class="btn-principal">Ver Cardápio Completo</a>
+</section>
+
+<style>
+    /* HERO */
+    .hero {
+        background: linear-gradient(rgba(30, 10, 30, 0.75), rgba(30, 10, 30, 0.75)),
+                    url('https://images.unsplash.com/photo-1498579150354-977475b7ea0b?auto=format&fit=crop&w=1400&q=80');
+        background-size: cover;
+        background-position: center;
+        min-height: 480px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-overlay {
+        color: white;
+        padding: 20px;
+    }
+    .hero h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
+    .hero-subtitulo {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        opacity: 0.95;
+    }
+    .hero-botoes {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .btn-principal {
+        display: inline-block;
+        padding: 14px 34px;
+        background-color: #c0392b;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: background-color 0.2s, transform 0.2s;
+    }
+    .btn-principal:hover {
+        background-color: #a93226;
+        transform: translateY(-2px);
+    }
+    .btn-secundario {
+        display: inline-block;
+        padding: 14px 34px;
+        background-color: transparent;
+        color: white;
+        text-decoration: none;
+        border: 2px solid white;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+    .btn-secundario:hover {
+        background-color: rgba(255,255,255,0.15);
+    }
+
+    /* SOBRE */
+    .sobre {
+        padding: 70px 20px;
+        text-align: center;
+        background-color: #faf7f2;
+    }
+    .sobre-container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    .sobre h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #4a0e4e;
+    }
+    .sobre p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: #555;
+    }
+
+    /* DESTAQUES */
+    .destaques {
+        padding: 70px 20px;
+        text-align: center;
+    }
+    .destaques h2 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+        color: #4a0e4e;
+    }
+    .grid-destaques {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .card-destaque {
+        padding: 30px 20px;
+        border-radius: 10px;
+        background-color: #faf7f2;
+        transition: transform 0.2s;
+    }
+    .card-destaque:hover {
+        transform: translateY(-5px);
+    }
+    .icone {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+    .card-destaque h3 {
+        margin-bottom: 8px;
+        color: #4a0e4e;
+    }
+    .card-destaque p {
+        color: #666;
+        font-size: 0.95rem;
+    }
+
+    /* CTA FINAL */
+    .cta-final {
+        background-color: #4a0e4e;
+        color: white;
+        text-align: center;
+        padding: 60px 20px;
+    }
+    .cta-final h2 {
+        margin-bottom: 24px;
+        font-size: 1.8rem;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 600px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        .hero-subtitulo {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+{% endblock %}

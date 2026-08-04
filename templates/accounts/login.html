@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Vizari - Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>Entrar</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-principal">Entrar</button>
+    </form>
+</div>
+
+<style>
+    .login-container {
+        max-width: 400px;
+        margin: 60px auto;
+        padding: 30px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+    .login-container input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        box-sizing: border-box;
+    }
+    .btn-principal {
+        margin-top: 16px;
+        padding: 10px 24px;
+        background-color: #c0392b;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}

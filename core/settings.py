@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'categorias.apps.CategoriasConfig',
     'clientes.apps.ClientesConfig',
     'accounts.apps.AccountsConfig',
+    'pedidos',
 ]
 
 MIDDLEWARE = [
@@ -122,8 +123,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static'] 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media' 
-LOGIN_REDIRECT_URL = 'cardapio'   # pra onde vai depois de logar
+LOGIN_REDIRECT_URL = 'cardapio'
 LOGOUT_REDIRECT_URL = 'login'
+
 # MEDIA_ROOT = BASE_DIR / 'static/images'
 
 # MEDIA_URL = "imagens/" 

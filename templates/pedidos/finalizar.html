@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Vizari - Finalizar Pedido{% endblock %}
+{% block content %}
+<div class="carrinho-container">
+    <h1>Finalizar Pedido</h1>
+
+    <h2>Resumo</h2>
+    <ul>
+        {% for item in carrinho %}
+            <li>{{ item.quantidade }}x {{ item.produto.nome }} — R$ {{ item.subtotal }}</li>
+        {% endfor %}
+    </ul>
+    <strong>Total: R$ {{ carrinho.total }}</strong>
+
+    <form method="post" class="form-mesa">
+        {% csrf_token %}
+        <label for="mesa">Qual é a sua mesa?</label>
+        <select name="mesa" id="mesa" required>
+    <option value="">Selecione a mesa</option>
+    {% for numero in mesas %}
+        <option value="{{ numero }}">Mesa {{ numero }}</option>
+    {% endfor %}
+</select>
+        <button type="submit" class="btn-dourado">Confirmar Pedido</button>
+    </form>
+</div>
+
+<style>
+    .carrinho-container { max-width: 600px; margin: 40px auto; padding: 0 20px; }
+    .form-mesa { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; max-width: 300px; }
+    .form-mesa select { padding: 10px; font-size: 1rem; }
+</style>
+{% endblock %}

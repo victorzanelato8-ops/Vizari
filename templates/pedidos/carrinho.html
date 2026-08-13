@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Vizari - Carrinho{% endblock %}
+{% block content %}
+<div class="carrinho-container">
+    <h1>Seu Pedido</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p class="mensagem">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {% if carrinho.total_itens > 0 %}
+        <table class="tabela-carrinho">
+            <tr>
+                <th>Produto</th>
+                <th>Qtd</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+            {% for item in carrinho %}
+            <tr>
+                <td>{{ item.produto.nome }}</td>
+                <td>
+                    <form method="post" action="{% url 'atualizar_carrinho' item.produto.id %}" class="form-qtd">
+                        {% csrf_token %}
+                        <input type="number" name="quantidade" value="{{ item.quantidade }}" min="1">
+                        <button type="submit">↻</button>
+                    </form>
+                </td>
+                <td>R$ {{ item.subtotal }}</td>
+                <td><a href="{% url 'remover_do_carrinho' item.produto.id %}">Remover</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Total: R$ {{ carrinho.total }}</h2>
+        <a href="{% url 'finalizar_pedido' %}" class="btn-dourado">Finalizar Pedido</a>
+    {% else %}
+        <p>Seu carrinho está vazio.</p>
+        <a href="{% url 'cardapio' %}" class="btn-dourado">Ver Cardápio</a>
+    {% endif %}
+</div>
+
+<style>
+    .carrinho-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+    .tabela-carrinho { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .tabela-carrinho th, .tabela-carrinho td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+    .form-qtd { display: flex; gap: 6px; align-items: center; }
+    .form-qtd input { width: 50px; padding: 4px; }
+    .mensagem { background: #f5efe4; padding: 10px 16px; border-radius: 4px; margin-bottom: 16px; }
+</style>
+{% endblock %}

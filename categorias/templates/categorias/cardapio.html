@@ -19,7 +19,7 @@
                     <h3>{{ produto.nome }}</h3>
                     <p>{{ produto.descricao }}</p>
                     <strong>R$ {{ produto.preco }}</strong>
-                    <button class="btn-principal">Adicionar ao Pedido</button>
+                    <a href="{% url 'adicionar_ao_carrinho' produto.id %}" class="btn-principal">Adicionar ao Pedido</a>
                 </div>
                 {% endif %}
             {% endfor %}
@@ -48,19 +48,44 @@
         border-radius: 8px;
         padding: 16px;
     }
-    .card-produto img {
-        width: 100%;
-        border-radius: 6px;
-        margin-bottom: 10px;
-    }
-    .btn-principal{
-        margin-top: 10px;
-        padding: 8px 16px;
-        background-color: #ba8605;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-    }
+    .card-produto {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-principal {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px 8px;
+    background-color: #c9a961;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    white-space: normal;
+}
+
+    .btn-adicionar {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #c9a961;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+.btn-adicionar:hover {
+    background-color: #b8965a;
+}
 </style>
 {% endblock %}

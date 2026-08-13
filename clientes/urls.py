@@ -1,6 +1,6 @@
-from django.urls import path
-from clientes import views
+﻿from django.urls import path
+from . import views
 
-urlpatterns = [    
-    path('clientes', views.clientes_view, name='clientes'),    
+urlpatterns = [    path('clientes/', views.clientes, name='clientes'),    path('clientes/cadastro/', views.cadastro, name='cadastro'),
+    # suas outras rotas que jÃ¡ existem continuam aqui
 ]

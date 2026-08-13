@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Vizari - Pedido Confirmado{% endblock %}
+{% block content %}
+<div class="confirmado-container">
+    <h1>✅ Pedido Confirmado!</h1>
+    <p>Pedido <strong>#{{ pedido.id }}</strong> — Mesa <strong>{{ pedido.mesa }}</strong></p>
+    <ul>
+        {% for item in pedido.itens.all %}
+            <li>{{ item.quantidade }}x {{ item.produto.nome }} — R$ {{ item.subtotal }}</li>
+        {% endfor %}
+    </ul>
+    <strong>Total: R$ {{ pedido.total }}</strong>
+    <br><br>
+    <a href="{% url 'cardapio' %}" class="btn-dourado">Voltar ao Cardápio</a>
+</div>
+
+<style>
+    .confirmado-container { max-width: 600px; margin: 60px auto; text-align: center; }
+</style>
+{% endblock %}

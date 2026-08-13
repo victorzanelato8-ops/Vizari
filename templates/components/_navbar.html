@@ -1,17 +1,27 @@
 <nav class="navbar">
     <div class="navbar-container">
-        <a href="{% url 'home' %}" class="navbar-brand">Vizari</a>
-        <div class="navbar-links">
-            <a href="{% url 'home' %}">Início</a>
-            <a href="{% url 'cardapio' %}">Cardápio</a>
-            <a href="{% url 'clientes' %}">Clientes</a>
+        <div class="navbar-logo">
+            <a href="{% url 'home' %}" class="navbar-brand">Vizari</a>
+            <span class="navbar-tagline">Ristorante Italiano</span>
+        </div>
+
+      <div class="navbar-links">
+    <a href="{% url 'home' %}">Início</a>
+    <a href="{% url 'cardapio' %}">Cardápio</a>
+    <a href="{% url 'clientes' %}">Clientes</a>
+    <a href="{% url 'ver_carrinho' %}">🛒 Carrinho</a>
+</div>
+
+        <div class="navbar-auth">
             {% if user.is_authenticated %}
+                <span class="usuario-logado">Olá, {{ user.username }}</span>
                 <form method="post" action="{% url 'logout' %}" class="logout-form">
                     {% csrf_token %}
                     <button type="submit" class="logout-button">Sair</button>
                 </form>
             {% else %}
-                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'cadastro' %}" class="link-cadastro">Cadastrar</a>
+                <a href="{% url 'login' %}" class="btn-reserva">Entrar</a>
             {% endif %}
         </div>
     </div>
@@ -19,29 +29,93 @@
 
 <style>
     .navbar {
-        background-color: #4a0e4e;
-        padding: 20px 40px;
+        background-color: #1a1a1a;
+        padding: 18px 40px;
+        border-bottom: 1px solid #2e2e2e;
     }
     .navbar-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        max-width: 1100px;
+        max-width: 1200px;
         margin: 0 auto;
     }
+    .navbar-logo {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+    }
     .navbar-brand {
-        color: white;
-        font-size: 1.8rem;
-        font-weight: bold;
+        font-family: 'Playfair Display', serif;
+        color: #f4ede4;
+        font-size: 1.9rem;
+        font-weight: 700;
         text-decoration: none;
+    }
+    .navbar-tagline {
+        font-family: 'Poppins', sans-serif;
+        color: #c9a961;
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    .navbar-links {
+        display: flex;
+        gap: 32px;
     }
     .navbar-links a {
-        color: white;
+        font-family: 'Poppins', sans-serif;
+        color: #e8e0d5;
         text-decoration: none;
-        margin-left: 24px;
+        font-size: 0.9rem;
         font-weight: 500;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
     }
     .navbar-links a:hover {
-        text-decoration: underline;
+        color: #c9a961;
+    }
+    .navbar-auth {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .usuario-logado {
+        font-family: 'Poppins', sans-serif;
+        color: #e8e0d5;
+        font-size: 0.85rem;
+    }
+    .link-cadastro {
+        font-family: 'Poppins', sans-serif;
+        color: #e8e0d5;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+    .link-cadastro:hover {
+        color: #c9a961;
+    }
+    .btn-reserva,
+    .logout-button {
+        font-family: 'Poppins', sans-serif;
+        background-color: transparent;
+        color: #c9a961;
+        border: 1px solid #c9a961;
+        padding: 9px 22px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .btn-reserva:hover,
+    .logout-button:hover {
+        background-color: #c9a961;
+        color: #1a1a1a;
+    }
+    .logout-form {
+        display: inline;
+        margin: 0;
     }
 </style>

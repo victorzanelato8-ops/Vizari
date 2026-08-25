@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from categorias.models import Produto
 from .carrinho import Carrinho
@@ -64,3 +64,12 @@ def finalizar_pedido(request):
 def pedido_confirmado(request, pedido_id):
     pedido = get_object_or_404(Pedido, id=pedido_id, usuario=request.user)
     return render(request, 'pedidos/confirmado.html', {'pedido': pedido})
+
+def eh_staff(user):
+    return user.is_authenticated and user.is_staff
+
+
+@user_passes_test(eh_staff, login_url='login')
+def painel_pedidos(request):
+    pedidos = Pedido.objects.select_related('usuario').prefetch_related('itens__produto').all()
+    return render(request, 'pedidos/painel.html', {'pedidos': pedidos})

@@ -3,7 +3,13 @@ from django.contrib.auth import login
 from .forms import CadastroClienteForm
 from .models import Cliente
 
-def clientes(request):
+from django.contrib.auth.decorators import user_passes_test
+
+def eh_staff(user):
+    return user.is_authenticated and user.is_staff
+
+@user_passes_test(eh_staff, login_url='login')
+def index(request):
     clientes = Cliente.objects.all()
     return render(request, 'clientes/index.html', {'clientes': clientes})
 

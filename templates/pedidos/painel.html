@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Vizari - Painel de Pedidos{% endblock %}
+{% block content %}
+<div class="painel-container">
+    <h1>Painel de Pedidos</h1>
+
+    {% if pedidos %}
+        <table class="tabela-painel">
+            <tr>
+                <th>Pedido</th>
+                <th>Cliente</th>
+                <th>Mesa</th>
+                <th>Itens</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Data</th>
+            </tr>
+            {% for pedido in pedidos %}
+            <tr>
+                <td>#{{ pedido.id }}</td>
+                <td>{{ pedido.usuario.username }}</td>
+                <td>Mesa {{ pedido.mesa }}</td>
+                <td>
+                    <ul class="lista-itens">
+                        {% for item in pedido.itens.all %}
+                            <li>{{ item.quantidade }}x {{ item.produto.nome }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>R$ {{ pedido.total }}</td>
+                <td><span class="status status-{{ pedido.status }}">{{ pedido.get_status_display }}</span></td>
+                <td>{{ pedido.criado_em|date:"d/m/Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nenhum pedido registrado ainda.</p>
+    {% endif %}
+</div>
+
+<style>
+    .painel-container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    .tabela-painel {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 24px;
+    }
+    .tabela-painel th, .tabela-painel td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+        vertical-align: top;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.9rem;
+    }
+    .tabela-painel th {
+        background-color: #1a1a1a;
+        color: white;
+    }
+    .lista-itens {
+        margin: 0;
+        padding-left: 18px;
+    }
+    .status {
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    .status-pendente { background-color: #fdecea; color: #a83232; }
+    .status-confirmado { background-color: #eaf3fd; color: #2a5db0; }
+    .status-preparando { background-color: #fff6e0; color: #a87b0a; }
+    .status-entregue { background-color: #e8f8ee; color: #1f8b4c; }
+    .status-cancelado { background-color: #eee; color: #666; }
+</style>
+{% endblock %}

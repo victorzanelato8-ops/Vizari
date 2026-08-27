@@ -121,11 +121,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [BASE_DIR / 'static'] 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media' 
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media' 
+
 LOGIN_REDIRECT_URL = 'cardapio'
 LOGOUT_REDIRECT_URL = 'login'
 
-# MEDIA_ROOT = BASE_DIR / 'static/images'
+MEDIA_ROOT = BASE_DIR / 'static/images'
 
-# MEDIA_URL = "imagens/" 
+MEDIA_URL = "imagens/" 

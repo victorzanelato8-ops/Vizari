@@ -23,7 +23,7 @@ from core import views as core_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', core_views.home, name='home'),
-    path('categorias/', include('categorias.urls')),
+    path('cardapio/', include('categorias.urls')),
     path('clientes/', include('clientes.urls')),
     path('accounts/', include('accounts.urls')), 
     path('pedidos/', include('pedidos.urls')),
